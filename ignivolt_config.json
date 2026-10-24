@@ -1,0 +1,79 @@
+
+{
+  "channel": "IGNIVOLT",
+  "language": "Hindi + Hinglish",
+  "video_style": "cinematic realistic 3D animated industrial electrical training",
+  "aspect_ratio": "9:16",
+  "publishing_mode": "human_approval_required",
+
+  "characters": {
+    "engineer": {
+      "role": "Senior Electrical Engineer",
+      "appearance": "Consistent youthful male 3D animated character, white safety helmet with IGNIVOLT lightning logo, navy-blue industrial uniform with reflective strips, black protective gloves, expressive brown eyes, neat dark hair and friendly professional face.",
+      "personality": "Knowledgeable, patient, confident, friendly and safety-conscious.",
+      "dialogue_style": "Clear, professional Hindi-Hinglish; explains electrical concepts step by step."
+    },
+    "technician": {
+      "role": "Electrical Maintenance Technician",
+      "appearance": "Consistent youthful male 3D animated character, yellow safety helmet with matching lightning emblem, orange industrial coverall with reflective strips, expressive brown eyes, dark hair and friendly face.",
+      "personality": "Curious, attentive, practical and respectful.",
+      "dialogue_style": "Natural Hindi-Hinglish; asks relevant questions and responds like a real technician."
+    }
+  },
+
+  "character_consistency": [
+    "Preserve both characters' facial features, age, body proportions, uniforms, helmet colors and logos in every scene.",
+    "Do not redesign, replace or randomly change either character.",
+    "Use reference images of both approved characters whenever the generation tool supports reference images.",
+    "Change only the pose, expression, action and camera framing required by the scene."
+  ],
+
+  "animation_rules": [
+    "Animate the speaking character's lips in sync with the correct dialogue and voice.",
+    "Give both characters natural blinking and subtle eye movements.",
+    "Use dialogue-matched hand gestures, pointing, listening poses and small head movements.",
+    "Use gentle smiles and friendly eye contact during normal discussion.",
+    "The listening character must react naturally without moving their lips as if speaking.",
+    "Avoid robotic gestures, frozen faces, exaggerated expressions and unnatural body movement.",
+    "Use stable medium or medium-wide shots with restrained, smooth camera movement.",
+    "Avoid excessive zoom-in, zoom-out, sudden camera shake and unnecessary cuts.",
+    "Keep character positions and screen direction consistent between connected shots."
+  ],
+
+  "scene_rules": [
+    "Select the background to match the actual video topic and scene.",
+    "Use realistic industrial equipment, believable lighting, materials and workshop environments.",
+    "Show only relevant equipment and actions; avoid distracting background activity.",
+    "Do not place subtitles, voice-over text, dialogue captions, titles, watermarks or random lettering inside generated scene images.",
+    "Add any required titles and labels later during video editing.",
+    "Keep electrical equipment and troubleshooting demonstrations technically plausible."
+  ],
+
+  "audio_rules": [
+    "Generate actual spoken audio; written dialogue alone is not voice-over.",
+    "Create separate engineer and technician voice tracks with distinguishable voices.",
+    "Use natural Hindi-Hinglish pronunciation, conversational pacing and clear audio.",
+    "Synchronize each character's speech with their mouth movement.",
+    "Match voice duration to the scene duration.",
+    "Mix narration and dialogue clearly above background music and sound effects.",
+    "Never mark a video complete if its required audio track is missing or silent."
+  ],
+
+  "technical_safety": [
+    "Verify electrical facts before generating the final script.",
+    "Never show unsafe live-panel work as a recommended procedure.",
+    "Show appropriate isolation, lockout/tagout and verification of absence of voltage when relevant.",
+    "Do not invent equipment ratings, fault codes or manufacturer-specific procedures."
+  ],
+
+  "approval_checklist": [
+    "Character appearance and consistency verified",
+    "Topic-specific backgrounds verified",
+    "Engineer and technician dialogues reviewed",
+    "Separate voice tracks generated and audible",
+    "Lip-sync and natural animation checked",
+    "Camera movement and scene transitions checked",
+    "Electrical accuracy and safety reviewed",
+    "Final video and metadata approved by human"
+  ]
+}
