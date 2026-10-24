@@ -1,68 +1,72 @@
-
 name: IGNIVOLT Video Plan
 
 on:
-  workflow_dispatch:
-    inputs:
-      topic:
-        description: "Electrical video topic"
-        required: true
-        type: string
-      duration:
-        description: "Video duration in seconds"
-        required: true
-        default: "60"
-        type: string
+workflow_dispatch:
+inputs:
+topic:
+description: "Electrical video topic"
+required: true
+type: string
+duration:
+description: "Choose 40, 60, or 600 seconds"
+required: true
+type: choice
+options:
+- "40"
+- "60"
+- "600"
 
 permissions:
-  contents: read
+contents: read
 
 jobs:
-  create-plan:
-    runs-on: ubuntu-latest
+create-plan:
+runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+  - name: Set up Python
+    uses: actions/setup-python@v5
+    with:
+      python-version: "3.12"
 
-      - name: Generate video plan
-        env:
-          VIDEO_TOPIC: ${{ inputs.topic }}
-          VIDEO_DURATION: ${{ inputs.duration }}
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          from app.generate_video import build_video_plan
+  - name: Generate IGNIVOLT video plan
+    env:
+      VIDEO_TOPIC: ${{ inputs.topic }}
+      VIDEO_DURATION: ${{ inputs.duration }}
+    run: |
+      python - <<'PY'
+      import json
+      import os
+      from pathlib import Path
+      from app.script_generator import build_video_plan
 
-          topic = os.environ["VIDEO_TOPIC"].strip()
-          duration = int(os.environ["VIDEO_DURATION"])
+      topic = os.environ["VIDEO_TOPIC"].strip()
+      duration = int(os.environ["VIDEO_DURATION"])
 
-          plan = build_video_plan(topic, duration)
+      plan = build_video_plan(topic, duration)
 
-          output_dir = Path("production/video_drafts")
-          output_dir.mkdir(parents=True, exist_ok=True)
+      output_dir = Path("production/video_drafts")
+      output_dir.mkdir(parents=True, exist_ok=True)
 
-          output_file = output_dir / "video_plan.json"
-          output_file.write_text(
-              json.dumps(plan, ensure_ascii=False, indent=2),
-              encoding="utf-8"
-          )
+      output_file = output_dir / "video_plan.json"
+      output_file.write_text(
+          json.dumps(plan, ensure_ascii=False, indent=2),
+          encoding="utf-8"
+      )
 
-          print(f"Video plan created: {output_file}")
-          PY
+      print(f"Video plan created: {output_file}")
+      print(f"Duration: {duration} seconds")
+      print(f"Scenes: {plan['planned_scene_count']}")
+      print("Human approval required before publication.")
+      PY
 
-      - name: Upload video plan
-        uses: actions/upload-artifact@v4
-        with:
-          name: ignivolt-video-plan
-          path: production/video_drafts/video_plan.json
-          if-no-files-found: error
-          retention-days: 7
-          
+  - name: Upload video plan
+    uses: actions/upload-artifact@v4
+    with:
+      name: ignivolt-video-plan
+      path: production/video_drafts/video_plan.json
+      if-no-files-found: error
+      retention-days: 7
