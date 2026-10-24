@@ -1,3 +1,4 @@
+
 name: IGNIVOLT Script Draft
 
 on:
@@ -37,6 +38,7 @@ jobs:
           VIDEO_TOPIC: ${{ inputs.topic }}
           VIDEO_DURATION: ${{ inputs.duration }}
         run: |
+          python - <<'PY'
           import json
           import os
           from pathlib import Path
@@ -57,7 +59,7 @@ jobs:
           )
 
           print(f"Script draft created: {output_file}")
-        shell: python
+          PY
 
       - name: Upload script draft
         uses: actions/upload-artifact@v4
@@ -66,3 +68,4 @@ jobs:
           path: production/video_drafts/video_plan.json
           if-no-files-found: error
           retention-days: 7
+          
