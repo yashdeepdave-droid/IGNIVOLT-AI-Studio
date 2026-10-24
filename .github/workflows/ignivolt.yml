@@ -8,7 +8,7 @@ description: "Electrical video topic"
 required: true
 type: string
 duration:
-description: "Choose 40, 60, or 600 seconds"
+description: "Select video duration"
 required: true
 type: choice
 options:
@@ -57,10 +57,12 @@ steps:
           encoding="utf-8"
       )
 
-      print(f"Video plan created: {output_file}")
+      print("IGNIVOLT video plan created successfully.")
+      print(f"Topic: {topic}")
       print(f"Duration: {duration} seconds")
       print(f"Scenes: {plan['planned_scene_count']}")
-      print("Human approval required before publication.")
+      print("Status: Human review required.")
+      print("This workflow creates a plan, not a rendered video.")
       PY
 
   - name: Upload video plan
