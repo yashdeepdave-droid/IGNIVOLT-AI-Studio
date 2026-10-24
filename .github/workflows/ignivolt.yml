@@ -1,0 +1,39 @@
+
+name: IGNIVOLT Video Plan
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: "Electrical video topic"
+        required: true
+        type: string
+      duration:
+        description: "Video duration in seconds"
+        required: true
+        default: "60"
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  create-plan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate video plan
+        env:
+          VIDEO_TOPIC: ${{ inputs.topic }}
+          VIDEO_DURATION: ${{ inputs.duration }}
+        run: |
+          python -c "import os; print(os.environ['VIDEO_TOPIC'])" | python app/generate_video.py
+          
